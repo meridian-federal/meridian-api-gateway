@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"context"
-	"crypto/sha1"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/json"
@@ -1243,7 +1242,7 @@ func loadBasicAuthCredentials(secret *corev1.Secret) ([]string, error) {
 		return nil, fmt.Errorf("secret '%s/%s' must contain both username and password keys", secret.Namespace, secret.Name)
 	}
 
-	hash := sha1.New()
+	hash := sha256.New()
 	hash.Write(password)
 	passwordSum := base64.StdEncoding.EncodeToString(hash.Sum(nil))
 
