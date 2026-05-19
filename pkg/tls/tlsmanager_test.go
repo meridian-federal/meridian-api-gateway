@@ -146,7 +146,7 @@ func TestManager_Get(t *testing.T) {
 		{
 			desc:               "Get another tls config from a valid name",
 			tlsOptionsName:     "bar",
-			expectedMinVersion: uint16(tls.VersionTLS11),
+			expectedMinVersion: uint16(tls.VersionTLS13),
 		},
 		{
 			desc:           "Get a tls config from an invalid name",
