@@ -1,7 +1,6 @@
 package integration
 
 import (
-	"crypto/md5"
 	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
@@ -20,6 +19,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	"github.com/traefik/traefik/v3/integration/try"
 	"github.com/traefik/traefik/v3/pkg/middlewares/accesslog"
+	"crypto/sha256"
 )
 
 const (
@@ -257,7 +257,7 @@ func digestParts(resp *http.Response) map[string]string {
 }
 
 func getMD5(data string) string {
-	digest := md5.New()
+	digest := sha256.New()
 	if _, err := digest.Write([]byte(data)); err != nil {
 		log.Error().Err(err).Send()
 	}
