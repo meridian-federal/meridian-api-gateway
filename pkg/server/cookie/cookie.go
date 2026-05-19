@@ -1,11 +1,11 @@
 package cookie
 
 import (
-	"crypto/sha1"
 	"fmt"
 	"strings"
 
 	"github.com/rs/zerolog/log"
+	"crypto/sha256"
 )
 
 const cookieNameLength = 6
@@ -23,7 +23,7 @@ func GetName(cookieName, backendName string) string {
 func GenerateName(backendName string) string {
 	data := []byte("_TRAEFIK_BACKEND_" + backendName)
 
-	hash := sha1.New()
+	hash := sha256.New()
 	_, err := hash.Write(data)
 	if err != nil {
 		// Impossible case
