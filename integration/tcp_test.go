@@ -520,8 +520,8 @@ func (s *SimpleSuite) TestTCPWildcardHostSNITLSOptions() {
 	conn, err = tls.Dial("tcp", "127.0.0.1:8093", &tls.Config{
 		ServerName:         "other.snitest.com",
 		InsecureSkipVerify: true,
-		MinVersion:         tls.VersionTLS11,
-		MaxVersion:         tls.VersionTLS11,
+		MinVersion:         tls.VersionTLS13,
+		MaxVersion:         tls.VersionTLS13,
 	})
 	require.NoError(s.T(), err)
 	conn.Close()

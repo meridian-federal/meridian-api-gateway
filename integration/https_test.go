@@ -187,7 +187,7 @@ func (s *HTTPSSuite) TestWithTLSOptions() {
 	tr3 := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,
-			MaxVersion:         tls.VersionTLS11,
+			MaxVersion:         tls.VersionTLS13,
 			ServerName:         "snitest.org",
 		},
 	}
@@ -265,8 +265,8 @@ func (s *HTTPSSuite) TestWithTLSOptionsAndWildcard() {
 	tr3 := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,
-			MaxVersion:         tls.VersionTLS11,
-			MinVersion:         tls.VersionTLS11,
+			MaxVersion:         tls.VersionTLS13,
+			MinVersion:         tls.VersionTLS13,
 			ServerName:         "other.snitest.com",
 		},
 	}
@@ -316,7 +316,7 @@ func (s *HTTPSSuite) TestWithConflictingTLSOptions() {
 	tr4 := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: true,
-			MaxVersion:         tls.VersionTLS11,
+			MaxVersion:         tls.VersionTLS13,
 			ServerName:         "snitest.net",
 		},
 	}

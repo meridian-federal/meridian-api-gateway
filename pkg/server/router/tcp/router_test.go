@@ -1082,7 +1082,7 @@ func checkACMETLS(addr string, _ time.Duration) (err error) {
 	tlsConfig := &tls.Config{
 		InsecureSkipVerify: true,
 		ServerName:         "foo.bar",
-		MinVersion:         tls.VersionTLS10,
+		MinVersion:         tls.VersionTLS13,
 		NextProtos:         []string{tlsalpn01.ACMETLS1Protocol},
 	}
 	conn, err := tls.Dial("tcp", addr, tlsConfig)
@@ -1096,8 +1096,8 @@ func checkACMETLS(addr string, _ time.Duration) (err error) {
 		}
 	}()
 
-	if conn.ConnectionState().Version != tls.VersionTLS10 {
-		return fmt.Errorf("wrong TLS version. wanted %X, got %X", tls.VersionTLS10, conn.ConnectionState().Version)
+	if conn.ConnectionState().Version != tls.VersionTLS13 {
+		return fmt.Errorf("wrong TLS version. wanted %X, got %X", tls.VersionTLS13, conn.ConnectionState().Version)
 	}
 
 	return nil
@@ -1204,7 +1204,7 @@ func checkTCPTLS(addr string, timeout time.Duration, tlsVersion uint16) (err err
 	tlsConfig := &tls.Config{
 		InsecureSkipVerify: true,
 		ServerName:         "foo.bar",
-		MinVersion:         tls.VersionTLS10,
+		MinVersion:         tls.VersionTLS13,
 		MaxVersion:         tls.VersionTLS12,
 	}
 	conn, err := tls.Dial("tcp", addr, tlsConfig)
@@ -1245,7 +1245,7 @@ func checkTCPTLS(addr string, timeout time.Duration, tlsVersion uint16) (err err
 // checkTCPTLS10 simulates a TCP client connection with TLS 1.0.
 // It returns an error if it doesn't receive the expected response.
 func checkTCPTLS10(addr string, timeout time.Duration) error {
-	return checkTCPTLS(addr, timeout, tls.VersionTLS10)
+	return checkTCPTLS(addr, timeout, tls.VersionTLS13)
 }
 
 // checkTCPTLS12 simulates a TCP client connection with TLS 1.2.
@@ -1268,7 +1268,7 @@ func checkHTTPS(addr string, timeout time.Duration, tlsVersion uint16) error {
 			TLSClientConfig: &tls.Config{
 				InsecureSkipVerify: true,
 				ServerName:         "foo.bar",
-				MinVersion:         tls.VersionTLS10,
+				MinVersion:         tls.VersionTLS13,
 				MaxVersion:         tls.VersionTLS12,
 			},
 		},
@@ -1300,7 +1300,7 @@ func checkHTTPS(addr string, timeout time.Duration, tlsVersion uint16) error {
 // checkHTTPSTLS10 makes an HTTP request with TLS version 1.0.
 // It returns an error if it doesn't receive the expected response.
 func checkHTTPSTLS10(addr string, timeout time.Duration) error {
-	return checkHTTPS(addr, timeout, tls.VersionTLS10)
+	return checkHTTPS(addr, timeout, tls.VersionTLS13)
 }
 
 // checkHTTPSTLS12 makes an HTTP request with TLS version 1.2.

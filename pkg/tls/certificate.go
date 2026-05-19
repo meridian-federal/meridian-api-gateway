@@ -15,16 +15,16 @@ import (
 var (
 	// MinVersion Map of allowed TLS minimum versions.
 	MinVersion = map[string]uint16{
-		`VersionTLS10`: tls.VersionTLS10,
-		`VersionTLS11`: tls.VersionTLS11,
+		`VersionTLS10`: tls.VersionTLS13,
+		`VersionTLS11`: tls.VersionTLS13,
 		`VersionTLS12`: tls.VersionTLS12,
 		`VersionTLS13`: tls.VersionTLS13,
 	}
 
 	// MaxVersion Map of allowed TLS maximum versions.
 	MaxVersion = map[string]uint16{
-		`VersionTLS10`: tls.VersionTLS10,
-		`VersionTLS11`: tls.VersionTLS11,
+		`VersionTLS10`: tls.VersionTLS13,
+		`VersionTLS11`: tls.VersionTLS13,
 		`VersionTLS12`: tls.VersionTLS12,
 		`VersionTLS13`: tls.VersionTLS13,
 	}

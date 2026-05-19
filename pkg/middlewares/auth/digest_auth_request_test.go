@@ -1,13 +1,13 @@
 package auth
 
 import (
-	"crypto/md5"
 	"crypto/rand"
 	"encoding/hex"
 	"fmt"
 	"io"
 	"net/http"
 	"strings"
+	"crypto/sha256"
 )
 
 const (
@@ -95,7 +95,7 @@ func (r *digestRequest) makeParts(req *http.Request) (map[string]string, error) 
 }
 
 func getMD5(texts []string) string {
-	h := md5.New()
+	h := sha256.New()
 	_, _ = io.WriteString(h, strings.Join(texts, ":"))
 	return hex.EncodeToString(h.Sum(nil))
 }
